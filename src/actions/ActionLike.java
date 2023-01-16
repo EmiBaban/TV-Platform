@@ -45,7 +45,8 @@ public class ActionLike extends Action {
                             .findFirst()
                             .ifPresent(m -> {
                                 int index = currentUser.getWatchedMovies().indexOf(m);
-                                currentUser.getWatchedMovies().set(index, new Movie(page.getCurrentMovie()));
+                                currentUser.getWatchedMovies()
+                                        .set(index, new Movie(page.getCurrentMovie()));
                             });
 
                     currentUser.getPurchasedMovies().stream()
@@ -53,7 +54,8 @@ public class ActionLike extends Action {
                             .findFirst()
                             .ifPresent(m -> {
                                 int index = currentUser.getPurchasedMovies().indexOf(m);
-                                currentUser.getPurchasedMovies().set(index, new Movie(page.getCurrentMovie()));
+                                currentUser.getPurchasedMovies()
+                                        .set(index, new Movie(page.getCurrentMovie()));
                             });
 
                     currentUser.getRatedMovies().stream()
@@ -61,7 +63,8 @@ public class ActionLike extends Action {
                             .findFirst()
                             .ifPresent(m -> {
                                 int index = currentUser.getRatedMovies().indexOf(m);
-                                currentUser.getRatedMovies().set(index, new Movie(page.getCurrentMovie()));
+                                currentUser.getRatedMovies()
+                                        .set(index, new Movie(page.getCurrentMovie()));
                             });
 
                     page.getCurrentUser().getLikedMovies().add(new Movie(currentMovie));
