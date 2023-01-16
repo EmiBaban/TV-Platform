@@ -10,10 +10,10 @@ public class DataBase {
 
     private static DataBase instance = null;
 
-    public DataBase() {
+    private DataBase() {
     }
 
-    private static DataBase getInstance() {
+    public static DataBase getInstance() {
         if (instance == null) {
             instance = new DataBase();
         }
@@ -91,10 +91,18 @@ public class DataBase {
         return unbanned;
     }
 
+    /**
+     *
+     * @param deletedMovie
+     */
     public void deleteMovie(final String deletedMovie) {
         movies.removeIf(m -> m.getName().equals(deletedMovie));
     }
 
+    /**
+     *
+     * @param movie
+     */
     public void addMovie(final Movie movie) {
         movies.add(movie);
     }

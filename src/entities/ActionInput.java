@@ -179,26 +179,46 @@ public class ActionInput {
         this.movie = movie;
     }
 
-    public void setFilters(Filter filters) {
+    /**
+     *
+     * @param filters
+     */
+    public void setFilters(final Filter filters) {
         this.filters = filters;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSubscribedGenre() {
         return subscribedGenre;
     }
 
-    public void setSubscribedGenre(String subscribedGenre) {
+    public void setSubscribedGenre(final String subscribedGenre) {
         this.subscribedGenre = subscribedGenre;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDeletedMovie() {
         return deletedMovie;
     }
 
-    public void setDeletedMovie(String deletedMovie) {
+    /**
+     *
+     * @param deletedMovie
+     */
+    public void setDeletedMovie(final String deletedMovie) {
         this.deletedMovie = deletedMovie;
     }
 
+    /**
+     *
+     * @return
+     */
     public Movie getAddedMovie() {
         return addedMovie;
     }

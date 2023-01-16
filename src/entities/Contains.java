@@ -43,7 +43,12 @@ public class Contains {
     }
 
 
-    public ArrayList<Movie> containsActor(List<Movie> movies ){
+    /**
+     *
+     * @param movies
+     * @return
+     */
+    public ArrayList<Movie> containsActor(final List<Movie> movies) {
         ArrayList<Movie> containList = new ArrayList<>();
 
         for (Movie movie : movies) {
@@ -56,7 +61,12 @@ public class Contains {
         return containList;
     }
 
-    public ArrayList<Movie> containsGenre(List<Movie> movies) {
+    /**
+     *
+     * @param movies
+     * @return
+     */
+    public ArrayList<Movie> containsGenre(final List<Movie> movies) {
         ArrayList<Movie> containList = new ArrayList<>();
 
         for (Movie movie : movies) {

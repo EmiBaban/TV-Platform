@@ -1,8 +1,13 @@
 package actions;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import entities.*;
-
+import entities.Filter;
+import entities.Movie;
+import entities.Output;
+import entities.Page;
+import entities.Sort;
+import entities.ActionInput;
+import entities.DataBase;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,15 +22,18 @@ public class ActionFilter extends Action {
      * @param page
      * @param action
      */
-    public void filterAction(final ArrayNode node, final Page page, final ActionInput action, DataBase emp) {
+    public void filterAction(final ArrayNode node,
+                             final Page page, final ActionInput action, final DataBase dataBase) {
         if (page.getName().equals("movies")) {
             Filter filters = action.getFilters();
             if (filters.getContains() != null) {
-                List<Movie> movies =new ArrayList<>();
+                List<Movie> movies = new ArrayList<>();
                 if (filters.getContains().getActors() != null) {
-                    movies = filters.getContains().containsActor(emp.unbannedMovies(page.getCurrentUser()
+                    movies = filters.getContains()
+                            .containsActor(dataBase.unbannedMovies(page.getCurrentUser()
                             .getCredentials().getCountry()));
-                    page.setMovieList(filters.getContains().containsActor(emp.unbannedMovies(page.getCurrentUser()
+                    page.setMovieList(filters.getContains()
+                            .containsActor(dataBase.unbannedMovies(page.getCurrentUser()
                             .getCredentials().getCountry())));
                 }
                 if (filters.getContains().getGenre() != null) {

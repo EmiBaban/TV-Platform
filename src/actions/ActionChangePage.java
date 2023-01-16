@@ -22,7 +22,8 @@ public class ActionChangePage extends Action {
      * @param emp
      */
     public void changePage(final ArrayNode node,
-                           final Page page, final DataBase emp, final PagesStack stack, final String movieName) {
+                           final Page page, final DataBase emp,
+                           final PagesStack stack, final String movieName) {
         Output output = new Output();
         switch (getPageName()) {
             case "register":

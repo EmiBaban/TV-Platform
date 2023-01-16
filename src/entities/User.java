@@ -187,20 +187,27 @@ public class User {
         this.ratedMovies = ratedMovies;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Notification> getNotifications() {
         return notifications;
     }
 
+    /**
+     *
+     * @param notifications
+     */
     public void setNotifications(ArrayList<Notification> notifications) {
         this.notifications = notifications;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<String> getSubscribe() {
         return subscribe;
     }
-
-    public void setSubscribe(ArrayList<String> subscribe) {
-        this.subscribe = subscribe;
-    }
-
 }

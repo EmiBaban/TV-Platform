@@ -13,14 +13,19 @@ public class ActionLike extends Action {
         super(type, page);
     }
 
+    /**
+     *
+     * @param node
+     * @param page
+     */
     public void like(final ArrayNode node, final Page page) {
         if (page.getName().equals("see details")) {
             String movieName = page.getCurrentMovie().getName();
             if (page.getCurrentUser().getWatchedMovies().stream()
                     .filter((x) -> x.getName().equals(movieName))
                     .findFirst()
-                    .orElse(null) != null &&
-                    page.getCurrentUser().getLikedMovies().stream()
+                    .orElse(null) != null
+                    && page.getCurrentUser().getLikedMovies().stream()
                             .filter((x) -> x.getName().equals(movieName))
                             .findFirst()
                             .orElse(null) == null) {
@@ -35,26 +40,29 @@ public class ActionLike extends Action {
                     currentMovie.incrementNumLikes();
                     User currentUser = page.getCurrentUser();
 
-                    currentUser.getWatchedMovies().forEach((m -> {
-                        if (m.getName().equals(movieName)) {
-                            currentUser.getWatchedMovies()
-                                    .set(currentUser.getWatchedMovies().indexOf(m), new Movie(currentMovie));
-                        }
-                    }));
+                    currentUser.getWatchedMovies().stream()
+                            .filter(m -> m.getName().equals(movieName))
+                            .findFirst()
+                            .ifPresent(m -> {
+                                int index = currentUser.getWatchedMovies().indexOf(m);
+                                currentUser.getWatchedMovies().set(index, new Movie(page.getCurrentMovie()));
+                            });
 
-                    currentUser.getPurchasedMovies().forEach((m -> {
-                        if (m.getName().equals(movieName)) {
-                            currentUser.getPurchasedMovies()
-                                    .set(currentUser.getPurchasedMovies().indexOf(m), new Movie(currentMovie));
-                        }
-                    }));
+                    currentUser.getPurchasedMovies().stream()
+                            .filter(m -> m.getName().equals(movieName))
+                            .findFirst()
+                            .ifPresent(m -> {
+                                int index = currentUser.getPurchasedMovies().indexOf(m);
+                                currentUser.getPurchasedMovies().set(index, new Movie(page.getCurrentMovie()));
+                            });
 
-                    currentUser.getRatedMovies().forEach((m -> {
-                        if (m.getName().equals(movieName)) {
-                            currentUser.getRatedMovies()
-                                    .set(currentUser.getRatedMovies().indexOf(m), new Movie(currentMovie));
-                        }
-                    }));
+                    currentUser.getRatedMovies().stream()
+                            .filter(m -> m.getName().equals(movieName))
+                            .findFirst()
+                            .ifPresent(m -> {
+                                int index = currentUser.getRatedMovies().indexOf(m);
+                                currentUser.getRatedMovies().set(index, new Movie(page.getCurrentMovie()));
+                            });
 
                     page.getCurrentUser().getLikedMovies().add(new Movie(currentMovie));
                     ArrayList<Movie> movie = new ArrayList<>();

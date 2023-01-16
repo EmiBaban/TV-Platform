@@ -172,9 +172,16 @@ public class Movie {
         this.numRatings = numRatings;
     }
 
+    /**
+     *
+     */
     public void incrementNumLikes() {
         ++this.numLikes;
     }
+
+    /**
+     *
+     */
     public void incrementNumRatings() {
         ++this.numRatings;
     }

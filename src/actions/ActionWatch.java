@@ -13,6 +13,11 @@ public class ActionWatch extends Action {
         super(type, page);
     }
 
+    /**
+     *
+     * @param node
+     * @param page
+     */
     public void watch(final ArrayNode node, final Page page) {
         if (page.getName().equals("see details")) {
             Movie currentMovie = page.getMovieList().stream()

@@ -1,8 +1,11 @@
 package actions;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import entities.*;
-
+import entities.Output;
+import entities.Page;
+import entities.DataBase;
+import entities.Credentials;
+import entities.User;
 
 public class ActionLogin extends Action {
     private final Credentials credentials;
