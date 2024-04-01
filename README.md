@@ -1,4 +1,4 @@
-Etapa 1 - POO TV
+POO TV
 
 Băban Mihai - Emilian, 324 CD
 
