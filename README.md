@@ -1,46 +1,122 @@
-POO TV
+# 📺 TV Platform
 
-Băban Mihai - Emilian, 324 CD
+**Author:** Mihai-Emilian Băban, 324 CD
 
-##Design Patterns
+A video streaming platform built in Java, developed as a university project. The application simulates a Netflix-like service, with authentication, page navigation, movie management, and features for both standard and premium users.
 
-Am folosit Singleton pe DataBase si PagesStack unde parsez datele din Json pentru
-a lua o singura instanta
+---
 
-##Pachete si clase
+## 🚀 Implemented Features
 
-entitites contine:
+### Stage 1 – Core Functionality
 
--User - contine datele unui user si credentials
+- **Login / Register system** with validations
+- **Page navigation:** Homepage, Movies, See details, Upgrades, etc.
+- **Page actions:** search, filter, purchase, watch, like, and rate movies
+- **Error handling** for forbidden actions or invalid navigation
+- **JSON output** according to the specification
 
--Movie - contine datele unui film
+### Stage 2 – Advanced Features
 
--Page - in care retin numele paginii, utilizatorul curent,
+- **Genre subscription:** users can receive notifications when new movies from chosen categories appear
+- **Persistent notifications:** each user has a notification queue that persists between sessions
+- **Database management:**
+  - `add movie` → add a movie and notify subscribers of the relevant genres
+  - `delete movie` → remove a movie and refund users who purchased it
+- **Back button:** navigate back using a stack of pages
+- **Recommendations for premium users:** algorithm based on the most liked genres
 
-lista de filme pe care o poate vedea si filmul curent
+---
 
--Output - contine structura unui output. Daca trebuie sa afisez mesaj de eroare si
+## 🛠️ Technologies & Design
 
-currentMovies si currentMovies gol instantiez constructorul fara parametrii, iar 
+- **Java 17**
+- **Object-oriented programming:** inheritance, polymorphism, encapsulation
+- **Design patterns:**
+  - Singleton (database management, page stack)
+  - Observer (user notifications)
+  - Command (page actions)
+  - Factory (creating page/action objects)
+- **Input/output handling in JSON format**
+- **Extensible and maintainable architecture**
 
-daca comanda s a realizat cu succez instantiez constructorul cu parametrii.
+---
 
-pentru a scrie in json folosesc metoda addInJsonArrayNode din Output
+## 📂 Project Structure
 
--PagesStack - contine stiva in care adaug paginile dupa fiecare actiune de change page
+```
+src/
+ ├── actions/         # command implementation (change page, on page, database, etc.)
+ ├── database/        # movie and user management
+ ├── entities/        # classes for User, Movie, Notification
+ ├── pages/           # logic for each platform page
+ ├── utils/           # helpers for parsing and validation
+```
 
--Notification - contine numele filmului si mesajul
+### Main Classes Overview
 
--Recommendation - contine structura unui output pentru o recomandare. Metoda
+- **User:** user data and credentials
+- **Movie:** movie data
+- **Page:** page name, current user, visible movie list, current movie
+- **Output:** output structure; `addInJsonArrayNode` method for JSON writing
+- **PagesStack:** page stack for "back" functionality
+- **Notification:** movie name and message for notifications
+- **Recommendation:** output for recommendations, with `setRecommendedMovie(Page page)` method
+- **Actions:** classes for each action type, extending Action
 
-public void setRecommendedMovie(final Page page) adauga in vectorul de notificari
+---
 
-actions contine cate o clasa pentru fiecare tip de actiune care extind clasa Action
+## 📸 Example Run
 
-In clasa Main parcurg lista de actiuni si am folosit un switch case pe tipul actiunii.
+**Input:**
+```json
+{ "action": "change page", "page": "Movies" }
+```
 
-Daca actiunea este de tipul "change page" instantiez clasa ActionChangePage, daca 
+**Output:**
+```json
+{
+  "error": null,
+  "currentMoviesList": [{ "name": "Inception", "rating": 9.1 }],
+  "currentUser": { "name": "John", "notifications": [] }
+}
+```
 
-este de tipul "on page" ferific feature-ul actiunii si instantiez clasa corespunzatoare.
+---
 
+## 📖 What I Learned
 
+- How to build a scalable and maintainable OOP project
+- Choosing and integrating appropriate design patterns
+- Managing user ↔ application interaction through a page flow
+- Implementing a personalized recommendation algorithm
+
+---
+
+## ▶️ How to Run
+
+Clone the repository:
+
+```bash
+git clone https://github.com/EmiBaban/TV-Platform.git
+cd TV-Platform
+```
+
+Compile and run:
+
+```bash
+javac Main.java
+java Main input.json output.json
+```
+
+- `input.json` → file containing actions
+- `output.json` → execution results
+
+---
+
+## 📚 Additional Details
+
+- For details on each action, see the `Main` class and the packages in `src/`
+- Singleton is used for `DataBase` and `PagesStack` to ensure a single instance
+- For writing to JSON, use the `addInJsonArrayNode` method from the Output class
+- Premium user recommendations are generated based on preferred genres
